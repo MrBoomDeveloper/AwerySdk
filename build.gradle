@@ -1,9 +1,10 @@
 plugins {
     id "java-library"
+    id "maven-publish"
 }
 
 group = "com.mrboomdev.awery.sdk"
-version = "1.0.0"
+version = "1.0.0-SNAPSHOT"
 
 java {
     withJavadocJar()
@@ -16,6 +17,39 @@ java {
 jar {
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = "com.mrboomdev.awery.sdk"
+            artifactId = "awery"
+            version = "1.0.1-SNAPSHOT"
+
+            from components.java
+
+            pom {
+                name = "Awery"
+                description = "A simple interface for the Awery App for easier development across multiple platforms."
+                url = "https://github.com/MrBoomDev/Awery"
+
+                licenses {
+                    license {
+                        name = "MIT License"
+                        url = "https://github.com/MrBoomDev/Awery/blob/master/LICENSE"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = "mrboomdev"
+                        name = "MrBoomDev"
+                        email = "awerysdk@mrboomdev.ru"
+                    }
+                }
+            }
+        }
     }
 }
 
