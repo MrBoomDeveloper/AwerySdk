@@ -1,5 +1,6 @@
 package com.mrboomdev.awery.sdk.util;
 
+import com.mrboomdev.awery.sdk.util.exceptions.InvalidSyntaxException;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

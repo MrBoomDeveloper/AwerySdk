@@ -1,65 +1,66 @@
 package com.mrboomdev.awery.sdk;
 
 import com.mrboomdev.awery.sdk.util.FancyVersion;
-
+import com.mrboomdev.awery.sdk.util.exceptions.MissingImplementationException;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
+import java.lang.reflect.InvocationTargetException;
 
-import java9.util.stream.Stream;
-import java9.util.stream.StreamSupport;
 
-public class PlatformApi {
+/**
+ * A class that provides information about the host application.
+ * @author MrBoomDev
+ */
+public abstract class PlatformApi {
+	protected static PlatformApi instance;
+
+	/**
+	 * Sets the instance of the PlatformApi class.
+	 *
+	 * @param instance the PlatformApi instance to set
+	 * @author MrBoomDev
+	 */
+	public static void setInstance(PlatformApi instance) {
+		PlatformApi.instance = instance;
+	}
+
+	/**
+	 * Returns the instance of the PlatformApi class.
+	 *
+	 * @return the PlatformApi instance
+	 * @throws MissingImplementationException if the PlatformApi instance is not set
+	 * @author MrBoomDev
+	 */
+	public static PlatformApi getInstance() {
+		if(instance == null) {
+			throw new MissingImplementationException("PlatformApi is not set! Please use PlatformApi.setInstance() to set it at the very start of your program.");
+        }
+
+		return instance;
+	}
 
 	/**
 	 * @return A current version of the host application
+	 * @author MrBoomDev
 	 */
-	public static FancyVersion getAppVersion() {
-		throw new UnsupportedOperationException("Stub!");
-	}
+	public abstract FancyVersion getAppVersion();
 
 	/**
 	 * @return The name of the host application
+	 * @author MrBoomDev
 	 */
-	@Contract(pure = true)
-	public static @NotNull String getAppName() {
-		throw new UnsupportedOperationException("Stub!");
-	}
+	public abstract @NotNull String getAppName();
 
 	/**
 	 * @return The version of the host JVM library
+	 * @author MrBoomDev
 	 */
-	public static FancyVersion getJvmLibraryVersion() {
-		throw new UnsupportedOperationException("Stub!");
-	}
+	public abstract FancyVersion getJvmLibraryVersion();
 
 	/**
 	 * @return True if the host application was built with a "beta" flavor
+	 * @author MrBoomDev
 	 */
-	public static boolean isBeta() {
-		throw new UnsupportedOperationException("Stub!");
-	}
-
-	@NotNull
-	@Contract("_ -> new")
-	public static <E> Stream<E> stream(Collection<E> e) {
-		return StreamSupport.stream(e);
-	}
-
-	@SafeVarargs
-	@NotNull
-	@Contract("_ -> new")
-	public static <E> Stream<E> stream(E... e) {
-		return StreamSupport.stream(Arrays.asList(e));
-	}
-
-	@NotNull
-	@Contract("_ -> new")
-	public static <K, V> Stream<Map.Entry<K,V>> stream(@NotNull Map<K, V> map) {
-		return StreamSupport.stream(map.entrySet());
-	}
+	public abstract boolean isBeta();
 }

@@ -1,9 +1,9 @@
 package com.mrboomdev.awery.sdk.util;
 
-
-import static com.mrboomdev.awery.sdk.PlatformApi.stream;
-
+import com.mrboomdev.awery.sdk.util.exceptions.InvalidSyntaxException;
 import org.jetbrains.annotations.NotNull;
+
+import static com.mrboomdev.awery.sdk.PlatformSupport.stream;
 
 public class FancyVersion implements Comparable<FancyVersion> {
 	private Integer[] args;
