@@ -7,7 +7,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.InvocationTargetException;
 
-
 /**
  * A class that provides information about the host application.
  * @author MrBoomDev

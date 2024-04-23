@@ -1,64 +1,55 @@
 package com.mrboomdev.awery.sdk.data;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class CatalogFilter {
-	private List<String> includedTags, excludedTags;
-	private Long startDate, endDate;
-	private String query;
-	private int page;
+	private final Type type;
+	private final String name;
+	private Object value;
 
-	public CatalogFilter setQuery(String query) {
-		this.query = query;
-		return this;
+	public CatalogFilter(Type type, String name) {
+		this.type = type;
+		this.name = name;
 	}
 
-	public CatalogFilter setStartDate(long startDate) {
-		this.startDate = startDate;
-		return this;
+	public String getName() {
+		return name;
 	}
 
-	public CatalogFilter setEndDate(long endDate) {
-		this.endDate = endDate;
-		return this;
+	public Type getType() {
+		return type;
 	}
 
-	public long getStartDate() {
-		return startDate;
+	public void setValue(Object value) {
+		this.value = value;
 	}
 
-	public long getEndDate() {
-		return endDate;
+	public String getStringValue() {
+		return (String) value;
 	}
 
-	public CatalogFilter setIncludedTags(List<String> includedTags) {
-		this.includedTags = includedTags;
-		return this;
+	public Integer getNumberValue() {
+		return (Integer) value;
 	}
 
-	public CatalogFilter setExcludedTags(List<String> excludedTags) {
-		this.excludedTags = excludedTags;
-		return this;
+	public Boolean getToggleValue() {
+		return (Boolean) value;
 	}
 
-	public List<String> getIncludedTags() {
-		return includedTags;
+	public DisableableMode getDisablableValue() {
+		return (DisableableMode) value;
 	}
 
-	public List<String> getExcludedTags() {
-		return excludedTags;
+	public Calendar getDateValue() {
+		return (Calendar) value;
 	}
 
-	public CatalogFilter setPage(int page) {
-		this.page = page;
-		return this;
+	public enum DisableableMode {
+		UNCHECKED, CHECKED, DISABLED
 	}
 
-	public String getQuery() {
-		return query;
-	}
-
-	public int getPage() {
-		return page;
+	public enum Type {
+		STRING, NUMBER, TOGGLE, DISABLEABLE, DATE
 	}
 }
