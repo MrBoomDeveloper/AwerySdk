@@ -3,7 +3,7 @@ plugins {
     id "maven-publish"
 }
 
-group = "com.mrboomdev.awery.sdk"
+group = "com.github.MrBoomDeveloper"
 version = "1.0.0-SNAPSHOT"
 
 java {
@@ -23,8 +23,8 @@ jar {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = "com.mrboomdev.awery.sdk"
-            artifactId = "awery"
+            groupId = "com.github.MrBoomDeveloper"
+            artifactId = "AwerySdk"
             version = "1.0.1-SNAPSHOT"
 
             from components.java
