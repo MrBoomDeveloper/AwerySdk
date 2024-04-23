@@ -57,7 +57,16 @@ repositories {
     mavenCentral()
 }
 
+test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardError", "standardOut"
+        exceptionFormat "full"
+    }
+
+    useJUnitPlatform()
+}
+
 dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
     compileOnly "org.jetbrains:annotations:23.0.0"
-    implementation "net.sourceforge.streamsupport:android-retrostreams:1.7.4"
 }
