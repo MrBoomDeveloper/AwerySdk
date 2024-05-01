@@ -2,10 +2,7 @@ package com.mrboomdev.awery.sdk;
 
 import com.mrboomdev.awery.sdk.util.FancyVersion;
 import com.mrboomdev.awery.sdk.util.exceptions.MissingImplementationException;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * A class that provides information about the host application.
@@ -38,6 +35,8 @@ public abstract class PlatformApi {
 
 		return instance;
 	}
+
+	public abstract boolean isRequirementMet(@NotNull String requirement);
 
 	/**
 	 * @return A current version of the host application

@@ -5,16 +5,42 @@ import java.util.List;
 
 public class CatalogFilter {
 	private final Type type;
-	private final String name;
+	private final String id;
+	private String title;
 	private Object value;
 
-	public CatalogFilter(Type type, String name) {
+	public CatalogFilter(Type type, String id, String title, Object value) {
 		this.type = type;
-		this.name = name;
+		this.id = id;
+		this.title = title;
+		this.value = value;
 	}
 
-	public String getName() {
-		return name;
+	public CatalogFilter(Type type, String id, Object value) {
+		this.type = type;
+		this.id = id;
+		this.value = value;
+	}
+
+	public CatalogFilter(Type type, String id) {
+		this.type = type;
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Object getValue() {
+		return value;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	public Type getType() {
@@ -29,15 +55,23 @@ public class CatalogFilter {
 		return (String) value;
 	}
 
-	public Integer getNumberValue() {
+	public Number getNumberValue() {
+		if(value == null) return 0;
+		return (Number) value;
+	}
+
+	public Integer getIntegerValue() {
+		if(value == null) return 0;
 		return (Integer) value;
 	}
 
 	public Boolean getToggleValue() {
+		if(value == null) return false;
 		return (Boolean) value;
 	}
 
 	public DisableableMode getDisablableValue() {
+		if(value == null) return DisableableMode.UNCHECKED;
 		return (DisableableMode) value;
 	}
 
@@ -50,6 +84,6 @@ public class CatalogFilter {
 	}
 
 	public enum Type {
-		STRING, NUMBER, TOGGLE, DISABLEABLE, DATE
+		STRING, NUMBER, INTEGER, TOGGLE, DISABLEABLE, DATE
 	}
 }

@@ -7,6 +7,8 @@ import java.io.OutputStream;
 
 public interface Context {
 
+	String resolveString(String string);
+
 	InputStream openInputStream(File file) throws IOException;
 
 	OutputStream openOutputStream(File file) throws IOException;

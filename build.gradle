@@ -67,6 +67,7 @@ test {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    testImplementation "org.junit.jupiter:junit-jupiter:5.8.2"
     compileOnly "org.jetbrains:annotations:23.0.0"
+    compileOnly "com.squareup.moshi:moshi:1.15.0"
 }
