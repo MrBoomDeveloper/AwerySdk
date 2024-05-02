@@ -129,7 +129,7 @@ public abstract class ExtensionProvider implements Comparable<ExtensionProvider>
     public abstract String getId();
 
     /**
-     * @apiNote The returned value can be an array of format: "en;ru;jp"
+     * Note: The returned value can be an array of format: "en;ru;jp"
      * @return The language of the extension
      * @author MrBoomDev
      */
