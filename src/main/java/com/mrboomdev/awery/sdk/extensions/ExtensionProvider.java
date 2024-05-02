@@ -133,8 +133,9 @@ public abstract class ExtensionProvider implements Comparable<ExtensionProvider>
      * @return The language of the extension
      * @author MrBoomDev
      */
+    @Nullable
     public String getLang() {
-        return "en";
+        return null;
     }
 
     public void getCatalogCategories(@NotNull ResponseCallback<Map<String, CatalogList>> callback) {
