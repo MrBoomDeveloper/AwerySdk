@@ -3,6 +3,8 @@ package com.mrboomdev.awery.sdk.util;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+
 public enum MimeTypes {
 	ANY("*/*", null),
 	ZIP("application/zip", "zip"),
@@ -24,7 +26,7 @@ public enum MimeTypes {
 	}
 
 	@Contract(pure = true)
-	public static boolean test(String fileName, @NotNull MimeTypes... possibleTypes) {
+	public static boolean test(String fileName, @NotNull MimeTypes @NotNull ... possibleTypes) {
 		for(var type : possibleTypes) {
 			if(type == ANY || fileName.endsWith("." + type.extension)) {
 				return true;

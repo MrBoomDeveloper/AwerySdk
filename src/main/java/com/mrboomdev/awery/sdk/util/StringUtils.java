@@ -17,6 +17,8 @@ import java.util.TimeZone;
 
 public class StringUtils {
 
+	private StringUtils() {}
+
 	/**
 	 * Converts map to json string. If map is null, returns "null".
 	 * Used format: {"key1": "value1", "key2": "value2"}

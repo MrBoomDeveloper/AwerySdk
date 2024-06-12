@@ -4,6 +4,9 @@ import java.util.Calendar;
 import java.util.List;
 
 public class CatalogFilter {
+	public static final String FILTER_PAGE = "__AWERY_FILTER_PAGE__";
+	public static final String FILTER_QUERY = "__AWERY_FILTER_QUERY__";
+	public static final String FILTER_FEED = "__AWERY_FILTER_FEED__";
 	private final Type type;
 	private final String id;
 	private String title;
