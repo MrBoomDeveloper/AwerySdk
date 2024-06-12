@@ -1,10 +1,15 @@
 package com.mrboomdev.awery.sdk.util;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * A helper-class which helps to generate random ids which doesn't collide with other ids.
  * @author MrBoomDev
  */
-public class UniqueIdGenerator {
+public class UniqueIdGenerator implements Serializable {
+	@Serial
+	private static final long serialVersionUID = 1;
 	private long usedLongs;
 	private int usedIntegers;
 

@@ -4,9 +4,13 @@ import com.mrboomdev.awery.sdk.util.exceptions.InvalidSyntaxException;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class FancyVersion implements Comparable<FancyVersion> {
+public class FancyVersion implements Comparable<FancyVersion>, Serializable {
+	@Serial
+	private static final long serialVersionUID = 1;
 	private final int lastPartWithNumbers;
 	private final String[] args;
 	private final String original;

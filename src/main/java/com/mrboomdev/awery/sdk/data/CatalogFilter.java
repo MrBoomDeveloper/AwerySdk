@@ -1,9 +1,16 @@
 package com.mrboomdev.awery.sdk.data;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
-public class CatalogFilter {
+public class CatalogFilter implements Serializable {
+	@Serial
+	private static final long serialVersionUID = 1;
 	public static final String FILTER_PAGE = "__AWERY_FILTER_PAGE__";
 	public static final String FILTER_QUERY = "__AWERY_FILTER_QUERY__";
 	public static final String FILTER_FEED = "__AWERY_FILTER_FEED__";
@@ -50,36 +57,80 @@ public class CatalogFilter {
 		return type;
 	}
 
-	public void setValue(Object value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public boolean isEmpty() {
+		return value == null;
+	}
+
+	public void setValue(boolean value) {
+		this.value = value;
+	}
+
+	public void setValue(DisableableMode value) {
+		this.value = value;
+	}
+
+	public void setValue(long value) {
+		this.value = value;
+	}
+
+	public void setValue(@NotNull Calendar value) {
+		this.value = value.getTimeInMillis();
+	}
+
+	public void setValue(float value) {
+		this.value = value;
+	}
+
+	public void clearValue() {
+		this.value = null;
+	}
+
 	public String getStringValue() {
-		return (String) value;
+		return (String) getValue();
 	}
 
-	public Number getNumberValue() {
-		if(value == null) return 0;
-		return (Number) value;
+	public float getFloatValue() {
+		if(getValue() == null) return 0f;
+		return (Float) getValue();
 	}
 
-	public Integer getIntegerValue() {
-		if(value == null) return 0;
-		return (Integer) value;
+	public int getIntegerValue() {
+		if(getValue() == null) return 0;
+		return (Integer) getValue();
 	}
 
-	public Boolean getToggleValue() {
-		if(value == null) return false;
-		return (Boolean) value;
+	public boolean getBooleanValue() {
+		if(getValue() == null) return false;
+		return (Boolean) getValue();
 	}
 
-	public DisableableMode getDisablableValue() {
-		if(value == null) return DisableableMode.UNCHECKED;
-		return (DisableableMode) value;
+	public DisableableMode getDisablableMode() {
+		if(getValue() == null) return DisableableMode.UNCHECKED;
+		return (DisableableMode) getValue();
 	}
 
 	public Calendar getDateValue() {
-		return (Calendar) value;
+		var cal = Calendar.getInstance();
+		cal.setTimeInMillis((long) getValue());
+		return cal;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<CatalogFilter> getItems() {
+		if(getValue() == null) return null;
+		return (List<CatalogFilter>) getValue();
+	}
+
+	public void setValue(List<CatalogFilter> filters) {
+		this.value = filters;
 	}
 
 	public enum DisableableMode {
@@ -87,6 +138,6 @@ public class CatalogFilter {
 	}
 
 	public enum Type {
-		STRING, NUMBER, INTEGER, TOGGLE, DISABLEABLE, DATE
+		STRING, FLOAT, INTEGER, BOOLEAN, DISABLEABLE, DATE, NESTED_FILTERS
 	}
 }

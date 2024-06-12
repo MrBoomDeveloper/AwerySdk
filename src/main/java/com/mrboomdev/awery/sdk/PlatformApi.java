@@ -36,6 +36,13 @@ public abstract class PlatformApi {
 		return instance;
 	}
 
+	/**
+	 * Checks if a requirement is met on the host application.
+	 *
+	 * @param requirement the requirement to check
+	 * @return true if the requirement is met, false otherwise
+	 * @author MrBoomDev
+	 */
 	public abstract boolean isRequirementMet(@NotNull String requirement);
 
 	/**
@@ -55,10 +62,4 @@ public abstract class PlatformApi {
 	 * @author MrBoomDev
 	 */
 	public abstract FancyVersion getJvmLibraryVersion();
-
-	/**
-	 * @return True if the host application was built with a "beta" flavor
-	 * @author MrBoomDev
-	 */
-	public abstract boolean isBeta();
 }
